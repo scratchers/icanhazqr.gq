@@ -11,7 +11,7 @@ $im = imagecreatetruecolor(150, 30);
 $black = imagecolorallocate($im, 255, 255, 255);
 imagefilledrectangle($im, 0, 0, 399, 29, $black);
 // Font path
-$font = 'arial.ttf';
+$font = realpath(__DIR__.'/arial.ttf');
 // Add the text
 imagettftext($im, 20, 0, 5, 25, $black, $font, 'sample');
 imagecopymerge_alpha($main, $qr, 0, 0, 0, 0, 150, 150, 100);
