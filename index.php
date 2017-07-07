@@ -1,10 +1,12 @@
 <?php
 
+$text = $_GET['qr'] ?? 'sample';
+
 // Set the content-type
 header('Content-Type: image/png');
 header("Content-Disposition: filename='sample.png'");
 $main = imagecreatetruecolor(150, 180);
-$qr = imagecreatefrompng("https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&margin=5&data=sample");
+$qr = imagecreatefrompng("https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=png&margin=5&data=$text");
 // Create the image
 $im = imagecreatetruecolor(150, 30);
 // Create some colors
@@ -14,7 +16,7 @@ imagefilledrectangle($im, 0, 0, 399, 29, $black);
 // Font path
 $font = realpath(__DIR__.'/arial.ttf');
 // Add the text
-imagettftext($im, 20, 0, 5, 25, $white, $font, 'sample');
+imagettftext($im, 20, 0, 5, 25, $white, $font, $text);
 imagecopymerge_alpha($main, $qr, 0, 0, 0, 0, 150, 150, 100);
 imagecopymerge_alpha($main, $im, 0, 150, 0, 0, 150, 30, 100);
 imagepng($main);
