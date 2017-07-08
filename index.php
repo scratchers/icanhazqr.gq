@@ -1,6 +1,10 @@
 <?php
 
-$text = $_GET['qr'] ?? 'sample';
+$text = trim(strtok($_SERVER["REQUEST_URI"],'?'), '/');
+
+if (empty($text)) {
+    $text = 'icanhazqr';
+}
 
 // Set the content-type
 header('Content-Type: image/png');
